@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Security\UserSecurity;
 use App\Repository\UserRepository;
 
 class AuthController extends AbstractController
@@ -31,7 +32,9 @@ class AuthController extends AbstractController
                 die('Senha incorreta');
             }
 
-            die ('Deu rock');
+            UserSecurity::connect($user);
+
+            $this->redirect('alunos/listar');
 
             return;
         }
@@ -42,6 +45,8 @@ class AuthController extends AbstractController
 
     public function logout(): void
     {
+        UserSecurity::disconnect();
 
+        $this->redirect('/login');
     }
 }
