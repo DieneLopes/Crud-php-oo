@@ -31,6 +31,11 @@ CREATE TABLE tb_user (
     profile VARCHAR(20) NOT NULL
 );
 
+INSERT INTO tb_user
+(name, email, profile, password)
+VALUES
+('Administrador', 'admin@admin.com', 'admin', '$argon2i$v=19$m=65536,t=4,p=1$aTUxOC5udGNOL21KM29tNA$jiqG0IfXRvBAI+xhK6pSrlnTXqvVF8WyBlD4hXn4dEY');
+
 INSERT INTO tb_alunos 
 (nome, matricula, email, status, genero, dataNascimento, cpf)
 VALUES
@@ -47,6 +52,11 @@ VALUES
 ('Allan','Rua idelfonso albano 222, ap 1403', 'SABE TUDO, BRABISSIMO', true, '99999999999'),
 ('Gleidson', 'Rua oscar frança 88', 'Formado nas ruas', true, '22222222222');
 
+CREATE TABLE tb_categorias (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL
+);
+
 CREATE TABLE tb_cursos (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
@@ -57,23 +67,17 @@ CREATE TABLE tb_cursos (
     FOREIGN KEY (categoria_id) REFERENCES tb_categorias(id)
 );
 
-CREATE TABLE tb_categorias (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(50) NOT NULL
-);
-
 INSERT INTO tb_categorias (nome) 
 VALUES 
 ('Profissionalizante'),
 ('Tecnico'),
-('Graduação');
+('Graduação'),
+('Bacharelado'),
+('Pós-Graduação');
 
 INSERT INTO tb_cursos
 (nome, cargaHoraria, descricao, status, categoria_id)
 VALUES
-('FullStack','192','Vai ficar profissional',1,1);
+('FullStack','192','Vai ficar Muito bom',1,1);
 
-SELECT *
-FROM tb_cursos
-INNER JOIN tb_categorias
-ON tb_cursos.categoria_id = tb_categorias.id;
+SELECT * FROM tb_cursos INNER JOIN tb_categorias ON tb_cursos.categoria_id = tb_categorias.id;

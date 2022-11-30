@@ -21,7 +21,7 @@ class AuthController extends AbstractController
         if (false === empty($_POST)) {
             $email = $_POST['email'];
             $password = $_POST['password'];
-            
+
             $user = $this->userRepository->findOneByEmail($email);
 
             if (false === $user) {
@@ -34,11 +34,11 @@ class AuthController extends AbstractController
 
             UserSecurity::connect($user);
 
-            $this->redirect('alunos/listar');
+            $this->redirect('/alunos/listar');
 
             return;
         }
-
+        
         // $this->render('auth/login', [], false);
         $this->render('auth/login', navbar: false); // apenas a partir do PHP8
     }

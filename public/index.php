@@ -2,6 +2,8 @@
 
 //solicitando ao composer que gerencie o carregamento automagico dos arquivos
 
+session_start();
+
 use App\Connection\DatabaseConnection;
 
 include_once '../vendor/autoload.php';

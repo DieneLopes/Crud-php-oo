@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-class SiteController
-{
-    public function inicio(): void
-    {
-        echo "Pagina inicial";
-    }
 
-    
+class SiteController extends AbstractController
+{
+    public function inicio() :void
+    {
+        $this->render('inicio/inicio');
+        // $this->checkLogin();
+    }
 }
